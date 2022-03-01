@@ -16,14 +16,6 @@ class User(db.Model):
     def __repr__(self):
         return "<User %r>" % self.username
 
-@app.route("/")
-def main():
-    username = request.form["username"]
-    user = User.query.filter_by(username=username).first()
-    if session["username"] != user.username:
-        return render_template("login.html")
-    return render_template("index.html")
-
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
@@ -47,7 +39,7 @@ def register():
 
         session["username"] = user.username
 
-        return redirect("/")
+        return redirect("/home")
     
     else:
         return render_template("register.html")
@@ -73,6 +65,14 @@ def login():
 @app.route("/logout")
 def logout():  
     session.pop("username", None)
+    return render_template("login.html")
+
+@app.route("/home")
+def home():
+    return render_template("index.html")
+
+@app.route("/")
+def main():
     return render_template("login.html")
 
 if __name__ == "__main__":
