@@ -18,6 +18,10 @@ class User(db.Model):
 
 @app.route("/")
 def main():
+    username = request.form["username"]
+    user = User.query.filter_by(username=username).first()
+    if session["username"] != user.username:
+        return render_template("login.html")
     return render_template("index.html")
 
 @app.route("/register", methods=["POST", "GET"])
