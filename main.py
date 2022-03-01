@@ -62,6 +62,8 @@ def login():
         
         else:
             return render_template("login.html", message = "Invalid username and/or password")
+    else:
+        renturn render_template("login.html")
     
 
 @app.route("/logout")
