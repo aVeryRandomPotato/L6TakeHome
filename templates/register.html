@@ -4,16 +4,16 @@
     <title> Register </title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
+{% block content %}
 <body>
-    <br />
+    <br/>
     <div align="center">
         <div align="center" class="border">
             <div class="header">
                 <h1 class="word">Register</h1>
             </div>
-            {% if error %}
-            <div class="alert alert-danger">
-            {{ error }}
+            
             <div class="word">
                 <form action="/register" method="post">
                     <div class="msg">{{ message }}</div>
@@ -27,4 +27,6 @@
         </div>
     </div>
 </body>
+{% endblock %}
+
 </html>

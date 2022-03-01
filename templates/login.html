@@ -4,15 +4,14 @@
     <title> Login </title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+{% block content %}
 <body>
     <div align="center">
         <div align="center" class="border">
             <div class="header">
                 <h1 class="word">Login</h1>
             </div>
-            {% if error %}
-            <div class="alert alert-danger">
-            {{ error }}
+            
             <div class="word">
                 <form action="/login" method="post">
                     <div class="msg">{{ message }}</div>
@@ -25,4 +24,6 @@
         </div>
     </div>
 </body>
+{% endblock %}
+
 </html>
