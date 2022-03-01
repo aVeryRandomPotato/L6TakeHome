@@ -1,4 +1,3 @@
-from socket import MSG_BCAST
 from flask import Flask, request, redirect, session, render_template
 from flask_sqlalchemy import SQLAlchemy
 
@@ -30,12 +29,12 @@ def register():
         confirm_password = request.form["confirm-password"]
 
         if password != confirm_password:
-            return render_template("register.html", msg="Passwords do not match")
+            return render_template("register.html", message="Passwords do not match")
 
         user = User.query.filter_by(username=username).first()
 
         if user: 
-            return render_template("register.html", msg="Username already exists!")    
+            return render_template("register.html", message="Username already exists!")    
 
         user = User(username = username, password=password)
 
@@ -59,10 +58,10 @@ def login():
 
         if user and (user.password == password):
             session["username"] = user.username
-            return render_template("index.html", msg = "Welcome")
+            return render_template("index.html", message = "Welcome")
         
         else:
-            return render_template("login.html", msg = "Invalid username and/or password")
+            return render_template("login.html", message = "Invalid username and/or password")
     
 
 @app.route("/logout")
